@@ -46,15 +46,10 @@ sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin no/' /etc/ssh/sshd_
 systemctl restart sshd
 echo "Password authentication disabled, root SSH access disabled."
 
-# 5. Remove the root user's password
-echo "Removing the root user's password..."
-passwd -l root
-echo "Root user's password successfully removed."
-
-# 6. Update and upgrade installed packages
+# 5. Update and upgrade installed packages
 apt update
 
-# 7. Install and configure ufw
+# 6. Install and configure ufw
 echo "Installing and configuring ufw..."
 apt install -y ufw
 ufw default deny incoming  # Deny all incoming connections by default
@@ -63,7 +58,7 @@ ufw allow OpenSSH  # Allow only SSH access
 ufw --force enable  # Enable ufw
 echo "ufw installed and configured: only SSH access is allowed."
 
-# 8. Install and configure Fail2Ban
+# 7. Install and configure Fail2Ban
 echo "Installing and configuring Fail2Ban..."
 apt install -y fail2ban
 
